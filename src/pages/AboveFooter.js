@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
  const Footer = () => {
    return (
       <Container>
-         <div className='footer_container'>
+         <div className='footer_container' style={{display:'flex',flexWrap:'wrap'}}>
           <div className='link_container'>  <Link className='links' to={'/Subscription'}>Send Free Trial to Friends {'>'}</Link></div>
           <div className='link_container'>  <Link className='links' to={'/Subscription'}>Browse by Genre   {'>'}</Link></div>
           <div className='link_container'>  <Link className='links' to={'/Subscription'}>Decades   {'>'}</Link></div>

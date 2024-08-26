@@ -40,7 +40,7 @@ const StartPage = () => {
         />
       </div>
       <FloatingAD />
-      <div>
+      <div style={{marginLeft:'50px'}}>
     
       <Footer/></div>
     </div>

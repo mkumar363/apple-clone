@@ -133,7 +133,10 @@ function Browse() {
             <br/>
             <br/>
             <br/>
-             <AboveFooter />
+            <div style={
+                {marginLeft:"200px"}
+            }> <AboveFooter /></div>
+             
             <Footer />
         </>
     );

@@ -76,7 +76,7 @@ function Album() {
     <div>
       {loading && <CircularProgress />}
       {error && <Typography variant="body1" color="error">{error}</Typography>}
-      <div style={{ marginTop: '20px', marginLeft: '10px', marginRight: '10px' }}>
+      <div style={{ marginTop: '20px',  marginRight: '10px' }}>
         <Carousel 
           responsive={responsive}
           infinite={true}
