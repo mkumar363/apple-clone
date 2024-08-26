@@ -93,7 +93,7 @@ function Sidebar({ onItemSelect }) {
   return (
     <>
     
-      <Box sx={{ flexGrow: 1, position: 'fixed', zIndex: '1', top: '0px', background: 'rgb(249,249,249)',width:'303px' }}>
+      <Box sx={{ flexGrow: 1, position: 'fixed', zIndex: '1', top: '0px', background: 'rgb(249,249,249)',width:'290px' }}>
         <SidebarCol>
           <Grid container direction="column" spacing={2}>
             <Grid item>
