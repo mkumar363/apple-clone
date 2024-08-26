@@ -441,7 +441,7 @@ const Navbar1 = (props) => {
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
-            style={{ marginLeft: "85%", marginTop: "-210px" }}
+            style={{ marginLeft: "85%", marginTop: "-260px" }}
           >
             <div
               style={{
