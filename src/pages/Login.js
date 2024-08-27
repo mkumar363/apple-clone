@@ -8,15 +8,21 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const theme = createTheme();
 
 function Login() {
+
   const [getData, setData] = useState({
+    
     email: '',
     password: '',
     appType: 'music'
   });
+
+
   const [getError, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +53,10 @@ function Login() {
     }).then((result) => {
       localStorage.setItem('name', result.data.data.user.name);
       localStorage.setItem('token', result.data.token);
-      navigate('/');
+      toast.success('Login Successfully ....');
+      setTimeout(() => {
+        navigate('/');
+      }, 5000); 
     }).catch((error) => {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);
@@ -60,8 +69,10 @@ function Login() {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = (event) => event.preventDefault();
 
+
   return (
     <ThemeProvider theme={theme}>
+     <ToastContainer/>
       <Container component="main" maxWidth="xs">
         <Box
           sx={{
@@ -134,6 +145,8 @@ function Login() {
             </Button>
           </Box>
         </Box>
+       
+
       </Container>
     </ThemeProvider>
   );

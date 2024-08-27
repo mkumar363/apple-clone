@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Snackbar, Container, Grid, Box } from '@mui/material';
-import MuiAlert from '@mui/material/Alert';
+import { TextField, Button, Typography, Snackbar, Container, Box, Alert } from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios';
+
+const theme = createTheme();
 
 function ChangePassword() {
     const [formData, setFormData] = useState({
@@ -10,6 +13,7 @@ function ChangePassword() {
         currentPassword: '',
         newPassword: ''
     });
+
     const [snackbarOpen, setSnackbarOpen] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('');
     const [snackbarSeverity, setSnackbarSeverity] = useState('success');
@@ -35,12 +39,11 @@ function ChangePassword() {
                 headers: {
                     'Content-Type': 'application/json',
                     projectId: 'cp0doe0u3fx9',
-                    Authorization:`Bearer ${localStorage.getItem("token")}`
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
                 }
             });
             setSnackbarMessage('Password updated successfully.');
             setSnackbarSeverity('success');
-            console.log(response.data.data);
             setSnackbarOpen(true);
         } catch (error) {
             console.error('Error updating password:', error);
@@ -55,60 +58,90 @@ function ChangePassword() {
     };
 
     return (
-        <Container maxWidth="sm">
-            <Box sx={{ mt: 4 }}>
-                <Typography variant="h6" align="center">Change Password</Typography>
-                <form onSubmit={handleSubmit}>
-                    <Grid container spacing={2} mt={2}>
-                        <Grid item xs={12}>
-                            <TextField
-                                label="Name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                label="Email"
-                                name="email"
-                                type="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                label="Current Password"
-                                name="currentPassword"
-                                type="password"
-                                value={formData.currentPassword}
-                                onChange={handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <TextField
-                                label="New Password"
-                                name="newPassword"
-                                type="password"
-                                value={formData.newPassword}
-                                onChange={handleChange}
-                                fullWidth
-                            />
-                        </Grid>
-                    </Grid>
-                    <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>Change Password</Button>
-                </form>
+        <ThemeProvider theme={theme}>
+            <Container component="main" maxWidth="xs">
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <LockOutlinedIcon />
+                    <Typography component="h1" variant="h5">
+                        Change Password
+                    </Typography>
+                    <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="name"
+                            label="Name"
+                            name="name"
+                            autoComplete="name"
+                            autoFocus
+                            value={formData.name}
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            id="email"
+                            label="Email Address"
+                            name="email"
+                            type="email"
+                            autoComplete="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="currentPassword"
+                            label="Current Password"
+                            type="password"
+                            id="currentPassword"
+                            autoComplete="current-password"
+                            value={formData.currentPassword}
+                            onChange={handleChange}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            required
+                            fullWidth
+                            name="newPassword"
+                            label="New Password"
+                            type="password"
+                            id="newPassword"
+                            autoComplete="new-password"
+                            value={formData.newPassword}
+                            onChange={handleChange}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            sx={{ mt: 3, mb: 2 }}
+                        >
+                            Change Password
+                        </Button>
+                    </Box>
+                </Box>
                 <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
-                    <MuiAlert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
+                    <Alert onClose={handleSnackbarClose} severity={snackbarSeverity} sx={{ width: '100%' }}>
                         {snackbarMessage}
-                    </MuiAlert>
+                    </Alert>
                 </Snackbar>
-            </Box>
-        </Container>
+            </Container>
+        </ThemeProvider>
     );
 }
 

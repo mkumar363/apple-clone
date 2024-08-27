@@ -52,7 +52,7 @@ function Album() {
   };
 
   return (
-    <div>
+    <div >
       {loading && <CircularProgress />}
       {error && <Typography variant="body1" color="error">{error}</Typography>}
       <Grid container spacing={2} justifyContent="center">

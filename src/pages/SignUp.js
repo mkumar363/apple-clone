@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 import { Button, TextField, Container, Typography, Alert, Box, Card, CardContent } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const theme = createTheme();
 
 function SignUp() {
     const [getData, setData] = useState({
@@ -12,7 +17,6 @@ function SignUp() {
     });
 
     const [getError, setError] = useState(null);
-
     const navigate = useNavigate();
 
     const onChangeHandler = (event) => {
@@ -44,9 +48,11 @@ function SignUp() {
         }).then((result) => {
             localStorage.setItem('name', result.data.data.user.name);
             localStorage.setItem('token', result.data.token);
-            navigate('/');
+            toast.success('Signup Successfully ....');
+            setTimeout(() => {
+              navigate('/');
+            }, 5000);
         }).catch((error) => {
-            console.log(error);
             if (error.response && error.response.data.message) {
                 setError(error.response.data.message);
             } else {
@@ -56,15 +62,24 @@ function SignUp() {
     };
 
     return (
-        <Container maxWidth="sm">
-            <Card sx={{ mt: 5 }}>
-                <CardContent>
-                    <Box component="form" onSubmit={onSubmitHandler} noValidate sx={{ mt: 3 }}>
-                        <Typography component="h1" variant="h4" align="center" gutterBottom>
-                            Sign Up
-                        </Typography>
-                        {getError && <Alert severity="error" sx={{ mb: 2 }}>{getError}</Alert>}
+        <ThemeProvider theme={theme}>
+            <ToastContainer />
+            <Container component="main" maxWidth="xs">
+                <Box
+                    sx={{
+                        marginTop: 8,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                    }}
+                >
+                    <Typography component="h1" variant="h5">
+                        Sign Up
+                    </Typography>
+                    {getError && <Alert severity="error">{getError}</Alert>}
+                    <Box component="form" onSubmit={onSubmitHandler} sx={{ mt: 1 }}>
                         <TextField
+                            variant="outlined"
                             margin="normal"
                             required
                             fullWidth
@@ -77,6 +92,7 @@ function SignUp() {
                             onChange={onChangeHandler}
                         />
                         <TextField
+                            variant="outlined"
                             margin="normal"
                             required
                             fullWidth
@@ -88,6 +104,7 @@ function SignUp() {
                             onChange={onChangeHandler}
                         />
                         <TextField
+                            variant="outlined"
                             margin="normal"
                             required
                             fullWidth
@@ -103,7 +120,6 @@ function SignUp() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            color="primary"
                             sx={{ mt: 3, mb: 2 }}
                         >
                             Sign Up
@@ -111,15 +127,15 @@ function SignUp() {
                         <Button
                             fullWidth
                             variant="outlined"
-                            sx={{ mt: 1 }}
+                            sx={{ mb: 2 }}
                             onClick={handleLogin}
                         >
                             Login
                         </Button>
                     </Box>
-                </CardContent>
-            </Card>
-        </Container>
+                </Box>
+            </Container>
+        </ThemeProvider>
     );
 }
 

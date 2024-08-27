@@ -72,6 +72,9 @@
     /* .nav-controls {
         display: none;
     } */
+     .nav-login{
+      display:none ;
+     }
     .nav-controls{
     width: 200px;
 }

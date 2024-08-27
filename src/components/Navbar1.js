@@ -20,8 +20,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import three from "../assets/three.svg";
 import Swal from "sweetalert2";
-import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar1 = (props) => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -116,10 +116,7 @@ const Navbar1 = (props) => {
   const handleLogin = () => {
     navigate("/login");
   };
-
-  const handleChangePassword = () => {
-    navigate("/changepassword");
-  };
+ 
 
   useEffect(() => {
     if (audioPlayer.current) {
@@ -411,112 +408,17 @@ const Navbar1 = (props) => {
           </div>
         </div>
 
-        <div className="nav-login">
-          <Button onClick={handleOpen}>
-            <div>
-              {localStorage.getItem("token") ? (
-                <div
-                  style={{
-                    width: "40px",
-                    height: "40px",
-                    borderRadius: "50%",
-                    backgroundColor: "green",
-                    color: "white",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    fontSize: "24px",
-                  }}
-                >
-                  {localStorage.getItem("name") &&
-                    localStorage.getItem("name")[0]}
-                </div>
-              ) : (
-                "User Profile"
-              )}
-            </div>
-          </Button>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
-            style={{ marginLeft: "85%", marginTop: "-260px" }}
-          >
-            <div
-              style={{
-                display: "flex",
-                alignItems:'center',
-                justifyContent:"center",
-
-                width: "150px",
-                height: "150px",
-                backgroundColor: "lightyellow",
-                borderRadius: "10px",
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                marginTop: "-30px",
-                transform: "translate(-50%, -50%)",
-              }}
-            >
-              {!localStorage.getItem("token") ? (
-                <button onClick={()=>{handleLogin();handleClose()}} 
-                style={{fontSize:'18px',backgroundColor:'red',
-                color:'white',borderRadius:'5px',fontWeight:'600',
-                width:'150px'}}>Sign In</button>
-              ) : (
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "baseline",
-                    gap: "10px",
-                    backgroundColor: "lightyellow",
-                  }}
-                >
-                  <button
-                    style={{
-                      textDecoration: "none",
-                      borderRadius: "6px",
-                      color: "black",
-                      border: "none",
-                      backgroundColor: "lightyellow",
-                    }}
-                  >
-                    {localStorage.getItem("name").toUpperCase()}
-                  </button>
-                  <button
-                    style={{
-                      borderRadius: "6px",
-                      color: "black",
-                      border: "none",
-                      textDecoration: "none",
-                      backgroundColor: "lightyellow",
-                    }}
-                    onClick={handleChangePassword}
-                  >
-                    Change Password
-                  </button>
-
-                  <button
-                    style={{
-                      textDecoration: "none",
-                      borderRadius: "6px",
-                      color: "black",
-                      border: "none",
-                      backgroundColor: "lightyellow",
-                    }}
-                    onClick={logoutHandler}
-                  >
-                    {/* <img src={signin} alt="" style={{ marginRight: '4px' }} /> */}
-                    Sign out
-                  </button>
-                </div>
-              )}
-            </div>
-          </Modal>
-        </div>
+        <div className='nav-login' style={{ backgroundColor: 'red', borderRadius: '10px' }}>
+                        {!localStorage.getItem('token') ? (
+                            <button style={{ backgroundColor: 'red', borderRadius: '6px', color: 'white' }} onClick={handleLogin}>
+                                <img src={signin} alt='' style={{ marginRight: '4px' }} /> Sign In
+                            </button>
+                        ) : (
+                            <button style={{ backgroundColor: 'red', borderRadius: '6px', color: 'white' }} onClick={logoutHandler}>
+                                <img src={signin} alt='' style={{ marginRight: '4px' }} /> Sign out
+                            </button>
+                        )}
+                    </div>
       </div>
     </>
   );

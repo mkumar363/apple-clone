@@ -114,7 +114,7 @@ const carouselItemStyle = {
     textAlign: 'center'
 };
 const carouselImageStyle = {
-    width: '99%',
+    width: '98%',
     height: 'auto',
     maxHeight: '300px',
     borderRadius: '20px',

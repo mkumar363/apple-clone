@@ -26,6 +26,7 @@ import TopFifty from './pages/TopFifty';
 import TopTwenty from './pages/TopTwenty';
 import NewSong from './pages/NewSong';
 import Album1 from './pages/Album1';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const { token, setIsMobile } = useUser();
@@ -53,6 +54,7 @@ function App() {
 
   return (
     <div className="main-container">
+    <ToastContainer/>
       <BrowserRouter>
         <div className="leftcontent">
           <MediaQuery minWidth={1024}>
