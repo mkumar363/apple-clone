@@ -11,7 +11,7 @@ import { MdOutlineNavigateNext } from "react-icons/md";
 function TrendingSong() {
   const [getData, setData] = useState([]);
   const [filterSongs, setFilterSongs] = useState([]);
-  const { setAudioPlayerSong, setSongId } = useUser();
+  const { setAudioPlayerSong, setSongId} = useUser();
 
   useEffect(() => {
     // Fetch songs when the component mounts
@@ -41,11 +41,11 @@ function TrendingSong() {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 6
+      items: 5
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 6
+      items: 5
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },

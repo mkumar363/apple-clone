@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Grid } from '@mui/material';
 import MusicCard from '../components/MusicCard';
 import { useUser } from '../providers/UserProvider';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import '../App.css';
-import { MdOutlineNavigateNext } from "react-icons/md";
 
 function TopFifty() {
   const [getData, setData] = useState([]);
   const [filterSongs, setFilterSongs] = useState([]);
-  const { setAudioPlayerSong ,setSongId} = useUser();
+  const { setAudioPlayerSong, setSongId } = useUser();
 
   useEffect(() => {
     // Fetch songs when the component mounts
@@ -41,11 +39,11 @@ function TopFifty() {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 6
+      items: 5
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 6
+      items: 5
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -76,7 +74,7 @@ function TopFifty() {
               thumbnail={obj.thumbnail}
               artist={obj.artist}
               id={index}
-              onMusicHandler={onMusicHandler}
+              onMusicHandler={() => onMusicHandler(index)}
             />
           </div>
         ))}

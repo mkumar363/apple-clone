@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Grid } from '@mui/material';
 import MusicCard from '../components/MusicCard';
 import { useUser } from '../providers/UserProvider';
 import Carousel from 'react-multi-carousel';
@@ -14,7 +12,7 @@ function TopTwenty() {
   const { setAudioPlayerSong, setSongId } = useUser();
 
   useEffect(() => {
-    // Fetch happy songs when the component mounts
+    // Fetch songs when the component mounts
     onFilterSelection();
   }, []);
 
@@ -35,17 +33,17 @@ function TopTwenty() {
   const onMusicHandler = (index) => {
     let list = getData[index];
     setAudioPlayerSong(list);
-    setSongId(list._id)
+    setSongId(list._id);
   };
 
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 6
+      items: 5
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 6
+      items: 5
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -59,7 +57,6 @@ function TopTwenty() {
 
   return (
     <div style={{ marginTop: '20px', marginRight: '10px' }}>
-      
       <Carousel 
         responsive={responsive}
         infinite={true}
@@ -77,7 +74,7 @@ function TopTwenty() {
               thumbnail={obj.thumbnail}
               artist={obj.artist}
               id={index}
-              onMusicHandler={onMusicHandler}
+              onMusicHandler={() => onMusicHandler(index)}
             />
           </div>
         ))}
@@ -87,4 +84,3 @@ function TopTwenty() {
 }
 
 export default TopTwenty;
-

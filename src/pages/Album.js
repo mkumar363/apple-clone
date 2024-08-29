@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { CircularProgress, Typography } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import '../App.css';
 
 function Album() {
   const [albumData, setAlbumData] = useState([]);
@@ -35,17 +36,17 @@ function Album() {
     fetchAlbumData();
   }, []);
 
-  const handleAlbumClick = async (songId) => {
+  const handleAlbumClick = async (albumId) => {
     setLoading(true);
     try {
-      const response = await axios.get(`https://academics.newtonschool.co/api/v1/music/album/${songId}`, {
+      const response = await axios.get(`https://academics.newtonschool.co/api/v1/music/album/${albumId}`, {
         headers: {
           projectId: 'cp0doe0u3fx9'
         }
       });
       setSongId(response.data.data);
-      navigate(`/AlbumSongs/${songId}`);
-      console.log(songId);
+      navigate(`/AlbumSongs/${albumId}`);
+      console.log(albumId);
     } catch (error) {
       console.error(error);
     } finally {
@@ -56,11 +57,11 @@ function Album() {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
-      items: 6
+      items: 5
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 6
+      items: 5
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -73,33 +74,31 @@ function Album() {
   };
 
   return (
-    <div>
+    <div style={{ marginTop: '20px', marginRight: '10px' }}>
       {loading && <CircularProgress />}
       {error && <Typography variant="body1" color="error">{error}</Typography>}
-      <div style={{ marginTop: '20px',  marginRight: '10px' }}>
-        <Carousel 
-          responsive={responsive}
-          infinite={true}
-          autoPlay={true}
-          autoPlaySpeed={500} // Changed to 5000ms (5 seconds) for better user experience
-          keyBoardControl={true}
-          transitionDuration={500}
-          containerClass="carousel-container"
-          removeArrowOnDeviceType={['tablet', 'mobile', 'laptop', 'desktop']}
-        >
-          {albumData.map(album => (
-            <div key={album._id} style={{ padding: '0 10px' }}>
-              <MusicCard
-                title={album.title}
-                thumbnail={album.image}
-                artist={album.artists}
-                id={album._id}
-                onMusicHandler={() => handleAlbumClick(album._id)}
-              />
-            </div>
-          ))}
-        </Carousel>
-      </div>
+      <Carousel 
+        responsive={responsive}
+        infinite={true}
+        autoPlay={true}
+        autoPlaySpeed={5000} // Adjusted to 5000ms (5 seconds) for better user experience
+        keyBoardControl={true}
+        transitionDuration={500}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={['tablet', 'mobile', 'laptop', 'desktop']}
+      >
+        {albumData.map((album, index) => (
+          <div key={index} style={{ padding: '0 10px' }}>
+            <MusicCard
+              title={album.title}
+              thumbnail={album.image}
+              artist={album.artists}
+              id={album._id}
+              onMusicHandler={() => handleAlbumClick(album._id)}
+            />
+          </div>
+        ))}
+      </Carousel>
     </div>
   );
 }
