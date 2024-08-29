@@ -9,7 +9,7 @@ const StartPage = () => {
   const navigate = useNavigate();
   return (
     <div className="home-container" >
-      <div className="content-container">
+      <div className="content-container" style={{marginTop:"10px"}}>
         <img src={three} alt="" />
        
         <div className="text-container">
