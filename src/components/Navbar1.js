@@ -410,12 +410,12 @@ const Navbar1 = (props) => {
 
         <div className='nav-login' style={{ backgroundColor: 'red', borderRadius: '10px' }}>
                         {!localStorage.getItem('token') ? (
-                            <button style={{ backgroundColor: 'red', borderRadius: '6px', color: 'white' }} onClick={handleLogin}>
-                                <img src={signin} alt='' style={{ marginRight: '4px' }} /> Sign In
+                            <button style={{ fontWeight:600,backgroundColor: 'red', borderRadius: '6px', color: 'white' ,border:'none',padding:'5px'}} onClick={handleLogin}>
+                                 Sign In
                             </button>
                         ) : (
-                            <button style={{ backgroundColor: 'red', borderRadius: '6px', color: 'white' }} onClick={logoutHandler}>
-                                <img src={signin} alt='' style={{ marginRight: '4px' }} /> Sign out
+                            <button style={{ fontWeight:600,backgroundColor: 'red', borderRadius: '6px', color: 'white',border:'none',padding:'5px' }} onClick={logoutHandler}>
+                                Sign out
                             </button>
                         )}
                     </div>

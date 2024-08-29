@@ -115,7 +115,7 @@ function Sidebar({ onItemSelect }) {
               </div>
             </Grid>
             <Grid item>
-              <div className="appSearchNavbar" style={{ marginLeft: '5%' }}>
+              <div className="appSearchNavbar" style={{ marginLeft: '5%'}}>
                 <TextField
                   type="text"
                   placeholder="Search..."
@@ -123,8 +123,10 @@ function Sidebar({ onItemSelect }) {
                   value={searchText}
                   onChange={onSearchDetails}
                   style={{ width: '75%' }}
+
+                  
                 />
-                <div className='searchIcon-navbar' style={{ marginLeft: '3%', marginBottom: '10%' }}>
+                <div className='searchIcon-navbar' style={{ marginLeft: '3%', marginBottom: '10%'}}>
                   <img src={four} alt="" />
                 </div>
               </div>
