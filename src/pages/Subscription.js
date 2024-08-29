@@ -1,40 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import three from '../assets/three.svg'
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Subscription = () => {
-  function toast(message) {
-  const toastElement = document.createElement('div');
-  toastElement.innerHTML = message;
-  toastElement.style.position = 'fixed';
-  toastElement.style.zIndex = '9999';
-  toastElement.style.width = '300px';
-  toastElement.style.textAlign = 'center';
-  toastElement.style.fontWeight = 'bold';
-  toastElement.style.display = 'flex';
-  toastElement.style.alignItems = 'center';
-  toastElement.style.justifyContent = 'center';
-  toastElement.style.height = '300px';
-  toastElement.style.top = '50%';
-  toastElement.style.left = '50%';
-  toastElement.style.transform = 'translate(-50%, -50%)';
-  toastElement.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-  toastElement.style.color = '#fff';
-  toastElement.style.padding = '15px 20px';
-  toastElement.style.borderRadius = '10px';
-  toastElement.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.2)';
-  toastElement.style.fontSize = '18px';
-  toastElement.style.fontFamily = 'Arial, sans-serif';
-  toastElement.style.animation = 'fadeIn 0.5s';
-  document.body.appendChild(toastElement);
-  setTimeout(() => {
-    toastElement.style.animation = 'fadeOut 0.5s';
-    setTimeout(() => {
-      document.body.removeChild(toastElement);
-    }, 500); // Remove toast after 0.5 seconds
-  }, 1000); // Show toast for 3 seconds
-}
+  const notify =()=>toast.info('Under Construction ....', {
+    position: "top-center",
+    autoClose: 2000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: 0,
+    theme: "colored",
+    
+    });
 
   
   return (
@@ -71,7 +52,7 @@ const Subscription = () => {
   borderRadius: "5px",
   border: "none",
   cursor: "pointer"
-}} onClick={() => toast("Under Construction ....")}>Buy</button>
+}} onClick={notify}>Buy</button>
           </div>
 
           <div className="plans" style={{
@@ -95,7 +76,7 @@ const Subscription = () => {
   borderRadius: "5px",
   border: "none",
   cursor: "pointer"
-}} onClick={() => toast("Under Construction ....")}>Buy</button>
+}} onClick={notify}>Buy</button>
 
           </div>
 
@@ -120,7 +101,7 @@ const Subscription = () => {
   borderRadius: "5px",
   border: "none",
   cursor: "pointer"
-}} onClick={() => toast("Under Construction ....")}>Buy</button>
+}} onClick={notify}>Buy</button>
 
           </div>
         </div>
