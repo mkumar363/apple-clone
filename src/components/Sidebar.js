@@ -20,6 +20,8 @@ import ten from '../assets/ten.svg';
 import signin from '../assets/signin.svg';
 import './sidebar.css';
 
+import { toast } from 'react-toastify';
+
 const SidebarCol = styled('div')(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     padding: '10px',
@@ -96,6 +98,7 @@ function Sidebar({ onItemSelect }) {
     <Box sx={{
   flexGrow: 1,
   position: 'sticky',
+  height: '100vh',
   zIndex: '1',
   top: '0px',
   background: 'rgb(249,249,249)',
@@ -155,30 +158,37 @@ function Sidebar({ onItemSelect }) {
                 <Grid item>
                   <h3 style={{ marginLeft: '5%', marginTop:'12.5px' }}>PlayLists</h3>
                   <ListItem button onClick={() => handleNavigation('/moods')}  style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
-                    <ListItemText primary="Moods"  style={{ marginBottom: '12.5px',marginTop:'12.5px' }}/>
+                    <ListItemText primary="Moods"  />
                   </ListItem>
                   <ListItem button onClick={() => handleNavigation('/album1')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px'}}>
-                    <ListItemText primary="Albums" style={{ marginBottom: '12.5px',marginTop:'12.5px' }} />
+                    <ListItemText primary="Albums"  />
                   </ListItem>
                   {localStorage.getItem("token") && (
                     <ListItem button onClick={handleFavoritesClick} style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
                       <ListItemIcon>
                         <FavoriteIcon />
                       </ListItemIcon>
-                      <ListItemText primary="Favorites" style={{ marginBottom: '12.5px',marginTop:'12.5px' }} />
+                      <ListItemText primary="Favorites"  />
                     </ListItem>
                     
                   )}
                   {localStorage.getItem("token") && ( <ListItem button onClick={() => handleNavigation('/changepassword')} style={{ textDecoration: 'none', color: 'black', fontSize: '18px' }}>
-                    <ListItemText primary="Change Password" style={{ marginBottom: '12.5px',marginTop:'12.5px' }}/>
+                    <ListItemText primary="Change Password" />
                   </ListItem>)}
                  
                 </Grid>
                 <Divider />
                 <Grid item>
-                  <p style={{ marginLeft: '20px',marginTop:'50px',marginBottom:'50px' }}>
+                <button onClick={()=>toast.info("Under Construction ...",{ style: {
+   background: "linear-gradient(to right, #ff9900, #ff3737, #ff0000)", 
+    color: "white" ,
+    marginTop:"40px"
+  }})} style={{border:'none',
+                 textDecoration:"none",backgroundColor:'rgb(249,249,249)',marginLeft:'-10px',marginTop:"20px"}}>
+                  <p style={{ marginLeft: '20px' }}>
                     <img src={nine} alt="" /> Open in Music <img src={ten} alt="" />
                   </p>
+                  </button>
                 </Grid>
               </List>
             </Grid>

@@ -7,7 +7,8 @@
 }
 
 .leftcontent {
-  width:20%; /* Adjust as needed */
+  width:20%; 
+  height: 100%;/* Adjust as needed */
 }
 
 .rightcontent {
@@ -217,14 +218,15 @@ Link{
 }
 
 .btn-try-free {
-  background-color: #d60017;
-  color:black;
+  background-color: red;
+  color:whitesmoke;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .learn-more-link {
