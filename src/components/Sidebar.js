@@ -183,7 +183,8 @@ function Sidebar({ onItemSelect }) {
    background: "linear-gradient(to right, #ff9900, #ff3737, #ff0000)", 
     color: "white" ,
     marginTop:"40px"
-  }})} style={{border:'none',
+  },
+  position: "bottom-left"})} style={{border:'none',
                  textDecoration:"none",backgroundColor:'rgb(249,249,249)',marginLeft:'-10px',marginTop:"20px"}}>
                   <p style={{ marginLeft: '20px' }}>
                     <img src={nine} alt="" /> Open in Music <img src={ten} alt="" />
