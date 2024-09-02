@@ -53,10 +53,11 @@ function Login() {
     }).then((result) => {
       localStorage.setItem('name', result.data.data.user.name);
       localStorage.setItem('token', result.data.token);
-      toast.success('Login Successfully ....');
+      toast.success('Login Successfully ....',{style:{background:"lightgreen",color:"white"},autoClose:2000});
       setTimeout(() => {
+        window.location.reload();
         navigate('/');
-      }, 5000); 
+      }, 2000); 
     }).catch((error) => {
       if (error.response && error.response.data.message) {
         setError(error.response.data.message);

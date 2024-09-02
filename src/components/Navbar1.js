@@ -106,12 +106,28 @@ const Navbar1 = (props) => {
   };
 
   const logoutHandler = (event) => {
+    event.preventDefault();
     localStorage.removeItem("token");
     localStorage.removeItem("name");
-    event.preventDefault();
+    
+    // Swal.fire({
+    //     title: "Signed out",
+    //     text: "You have been successfully signed out.",
+    //     icon: "success",
+    //     timer: 2000, // Auto close after 2 seconds
+    //     timerProgressBar: true,
+    //     toast: true,
+    //     position: 'bottom-right',
+    //     showConfirmButton: false,
+    //     showCloseButton: true,
+    //     background:'green',
+    //     color:'white',
+
+    // });
     navigate("/");
-    window.location.reload();
-  };
+window.location.reload();
+   
+};
 
   const handleLogin = () => {
     navigate("/login");
